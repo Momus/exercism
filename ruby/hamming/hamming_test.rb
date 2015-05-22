@@ -10,6 +10,7 @@ end
 class HammingTest < Minitest::Test
 
   def test_identical_strands
+    
     assert_equal 0, Hamming.compute('A', 'A')
   end
 
@@ -19,12 +20,12 @@ class HammingTest < Minitest::Test
   end
 
   def test_complete_distance_in_single_nucleotide_strands
-    skip
+    
     assert_equal 1, Hamming.compute('A', 'G')
   end
 
   def test_complete_distance_in_small_strands
-    
+    skip
     assert_equal 2, Hamming.compute('AG', 'CT')
   end
 

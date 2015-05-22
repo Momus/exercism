@@ -6,45 +6,52 @@
 class Hamming
 
 =begin
-What I wanted to do is solve this problem using 
+What I wanted to do is solve this problem using the same sort
+of recursion that I saw in the Little Schemer book, because this
+problem really seem to fit that pattern.  Instead, I got completely
+stuck.
 
- 
+I used the lambda because without it the methods became out of scope
+for the block.  However, I can't seem to get the counter to count as
+the block iterates.  I've tried referencing it and returning it in
+different places in the blocks.  I tried to make it a class variable,
+even a global variable to see if scope was the problem. 
+
+I've been staring at this for hours, so if someone would nudge me in
+the right direction, I would be very grateful. 
+
+Dmitri
 =end
 
-  ##My "micro Scheme implementation" 
-  def self.car(list)
-    list[0]
+  ##Disguising Ruby strings as Scheme lists 
+  def s_car(string)
+    string[0]
   end
   
-  def self.cdr(list)
-    list = list[1..-1] if list
+  def s_cdr(string)
+    string = string[1..-1] if string
   end
 
-
-  
-  @counter = 0  
- 
-  def self.calc_distance(one_array, two_array)
-      if one_array.length  != two_array.length
+   
+  def self.compute(first_sequence, second_sequence)
+      if first_sequence.length  != second_sequence.length
         raise ArgumentError, 'Hamming number only defined for sequences of same length'
       else
-        (car(one_array) != car(two_array)) ?  @counter += 1 : @counter  
-        one_array  = cdr(one_array) 
-        two_array  = cdr(two_array)
-        calc_distance(one_array, two_array) if one_array
+        counter = 0
+        comp =  lambda do
+          if s_car(first_sequence) != s_car(second_sequence)
+            counter += 1
+          end
+          first_sequence  = s_cdr(first_sequence) 
+          second_sequence  = s_cdr(second_sequence)
+          if first_sequence
+            comp(first_sequence, second_sequence)
+          end
+        
+        end
+        return counter
       end
       
-      return @counter
-  end
-
-  def self.arrayize(string)
-    array = string.split("")
   end
   
-  def self.compute(first_sequence, second_sequence)
-    one_array = arrayize(first_sequence)
-    two_array = arrayize(second_sequence)
-    calc_distance(one_array, two_array)
-  end
-  
-end
+end #class Hamming
