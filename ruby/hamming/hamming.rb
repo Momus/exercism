@@ -35,7 +35,7 @@ class Hamming
       raise ArgumentError, 'Hamming number only defined for sequences of same length'
     else
       loop  do
-        result_string =  first_sequence[0]  if first_sequence[0]  != second_sequence[0]
+        result_string =  first_sequence[0]  if first_sequence && first_sequence[0]  != second_sequence[0]
         first_sequence[0]  = second_sequence[0]  = ""
         break first_sequence.empty?
       end 
