@@ -1,18 +1,6 @@
 
 
 =begin
-In this iteration, I got rid of my attempts to define Scheme-like
-functions, however, the counter is still not counting.  Will tackle
-again tomorrow, but if someone can spot my error, hints will be apprecaited!!!!
-
-Dmitri
-
-=end
-
-  ##Disguising Ruby strings as Scheme lists
-
-=begin
-#I want to be able to use these functions, but I can't call them!
 module MicroScheme
     
   def r_car(list_like_object)
