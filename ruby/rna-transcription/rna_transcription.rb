@@ -15,24 +15,26 @@ class Complement
                    }
 
 #This method is for easier debugging
-def self.show_map
-  @map = Complement_Map
-end
+  def self.show_map
+    @map = Complement_Map
+  end
 
-def self.of_dna(rna_string)
-  rna_compliment = ""
+  def self.of_dna(dna_string)
+    rna_compliment = ""
+    
+    dna_string.each_char do |c|
+      
+      rna_compliment <<  Complement_Map[:dna_to_rna][c]
+    
+    end
+    rna_compliment
+    rescue
+      raise ArgumentError
+  end
+
+  def self.of_rna(dna_string)
+    
+  end
   
-  rna_string.each_char { |c| rna_compliment <<  Complement_Map[:rna_to_dna][c] } #raise ArgumentError }
   
-  rna_compliment
-
-
-end
-
-
-def self.of_rna(dna_string)
-  
-end
-
-
 end #class ComplementTest
