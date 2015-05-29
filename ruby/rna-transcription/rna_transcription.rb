@@ -14,27 +14,35 @@ class Complement
                      }
                    }
 
-#This method is for easier debugging
-  def self.show_map
-    @map = Complement_Map
-  end
 
+ 
+
+  
   def self.of_dna(dna_string)
-    rna_compliment = ""
-    
-    dna_string.each_char do |c|
-      
-      rna_compliment <<  Complement_Map[:dna_to_rna][c]
-    
-    end
-    rna_compliment
-    rescue
-      raise ArgumentError
+    generate_complement(:dna_to_rna, dna_string)
+  rescue
+    raise ArgumentError, "Uracil not present in DNA"
   end
 
-  def self.of_rna(dna_string)
-    
+  
+  def self.of_rna(rna_string)
+    generate_complement(:rna_to_dna, rna_string)
+  rescue
+    raise ArgumentError, "Thymine not present in RNA"
   end
   
+  
+  
+ def self.generate_complement(map_index, nucleotide_string)
+
+   # Ennumerate's #each_with_object throws no method errror with strings
+   # So a string object is provided:
+    complement = ""
+    nucleotide_string.each_char { |c| complement <<  Complement_Map[map_index][c]}
+    return complement
+  
+  end
+
+ private_class_method :generate_complement
   
 end #class ComplementTest

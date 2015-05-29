@@ -27,27 +27,27 @@ class ComplementTest < Minitest::Test
   end
 
   def test_dna_complement_of_cytosine_is_guanine
-    skip
+    
     assert_equal 'G', Complement.of_rna('C')
   end
 
   def test_dna_complement_of_guanine_is_cytosine
-    skip
+    
     assert_equal 'C', Complement.of_rna('G')
   end
 
   def test_dna_complement_of_uracil_is_adenine
-    skip
+    
     assert_equal 'A', Complement.of_rna('U')
   end
 
   def test_dna_complement_of_adenine_is_thymine
-    skip
+    
     assert_equal 'T', Complement.of_rna('A')
   end
 
   def test_dna_complement
-    skip
+    
     assert_equal 'ACTTGGGCTGTAC', Complement.of_rna('UGAACCCGACAUG')
   end
 
@@ -57,7 +57,7 @@ class ComplementTest < Minitest::Test
   end
 
   def test_rna_raises_argument_error
-    skip
+    
     assert_raises(ArgumentError) { Complement.of_rna('T') }
   end
 end
