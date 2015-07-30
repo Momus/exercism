@@ -4,15 +4,14 @@
 
 ;;; Code:
 
+(defun hello (&optional hello-string)
+  "Say what needs to be said."
+  (if hello-string
+      (message "Hello, %s!" hello-string)
+    (message "Hello, World!"))
+  )
 
 (provide 'hello-world)
 
-(defun hello ()
-  ;; Function to say what needs
-  ;; to be said.
-  (print "Hello, World!")
-  )
-
-(hello)
   
 ;;; hello-world.el ends here
