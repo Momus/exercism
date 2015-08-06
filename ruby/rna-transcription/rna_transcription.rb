@@ -20,11 +20,12 @@ module Complement
   private
   
   def self.nucleotide_check(nucleotide, strand)
-    wrong_place = strand =~ /#{nucleotide}/
-    if wrong_place
+    
+    if (strand =~ /#{nucleotide}/)
     then
-      raise(ArgumentError, "Wrong nucleotide in position #{(wrong_place + 1).to_s}")
+      raise(ArgumentError, "Wrong nucleotide in sequence")
     end
+    
   end
   
 end #class ComplementTest
