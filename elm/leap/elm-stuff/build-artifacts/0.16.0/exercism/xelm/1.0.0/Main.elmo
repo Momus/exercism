@@ -1,0 +1,29 @@
+Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values) return _elm.Main.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Console = Elm.Console.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $ElmTest = Elm.ElmTest.make(_elm),
+   $Leap = Elm.Leap.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Task = Elm.Task.make(_elm);
+   var _op = {};
+   var tests = A2($ElmTest.suite,
+   "Leap",
+   _U.list([A2($ElmTest.test,"leap year",A2($ElmTest.assertEqual,true,$Leap.isLeapYear(1996)))
+           ,A2($ElmTest.test,"non-leap year",A2($ElmTest.assertEqual,false,$Leap.isLeapYear(1997)))
+           ,A2($ElmTest.test,"non-leap even year",A2($ElmTest.assertEqual,false,$Leap.isLeapYear(1998)))
+           ,A2($ElmTest.test,"century",A2($ElmTest.assertEqual,false,$Leap.isLeapYear(1900)))
+           ,A2($ElmTest.test,"second century",A2($ElmTest.assertEqual,false,$Leap.isLeapYear(1800)))
+           ,A2($ElmTest.test,"fourth century",A2($ElmTest.assertEqual,true,$Leap.isLeapYear(2400)))
+           ,A2($ElmTest.test,"y2k",A2($ElmTest.assertEqual,true,$Leap.isLeapYear(2000)))]));
+   var runner = Elm.Native.Task.make(_elm).performSignal("runner",$Console.run($ElmTest.consoleRunner(tests)));
+   return _elm.Main.values = {_op: _op,tests: tests};
+};

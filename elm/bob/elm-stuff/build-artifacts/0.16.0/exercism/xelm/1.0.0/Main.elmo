@@ -1,0 +1,66 @@
+Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values) return _elm.Main.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Bob = Elm.Bob.make(_elm),
+   $Char = Elm.Char.make(_elm),
+   $Console = Elm.Console.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $ElmTest = Elm.ElmTest.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Random = Elm.Random.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm),
+   $Task = Elm.Task.make(_elm);
+   var _op = {};
+   var listOfCharacters = F2(function (length,characterList) {    return A2($Random.list,length,characterList);});
+   var gibberish = F2(function (length,characterList) {
+      return $Basics.fst(A2($Random.generate,A2($Random.map,$String.fromList,A2(listOfCharacters,length,characterList)),$Random.initialSeed(424242)));
+   });
+   var character = F2(function (start,end) {    return A2($Random.map,$Char.fromCode,A2($Random.$int,start,end));});
+   var anyCharacter = A2(character,32,126);
+   var gibberishQuestion = function (length) {    return A2($Basics._op["++"],A2(gibberish,length,anyCharacter),"?");};
+   var uppercaseCharacter = A2(character,65,90);
+   var uppercaseGibberish = function (length) {    return A2(gibberish,length,uppercaseCharacter);};
+   var tests = A2($ElmTest.suite,
+   "Bob",
+   _U.list([A2($ElmTest.test,"stating something",A2($ElmTest.assertEqual,"Whatever.",$Bob.hey("Tom-ay-to, tom-aaaah-to.")))
+           ,A2($ElmTest.test,"shouting",A2($ElmTest.assertEqual,"Whoa, chill out!",$Bob.hey("WATCH OUT!")))
+           ,A2($ElmTest.test,"shouting gibberish",A2($ElmTest.assertEqual,"Whoa, chill out!",$Bob.hey(uppercaseGibberish(10))))
+           ,A2($ElmTest.test,"asking a question",A2($ElmTest.assertEqual,"Sure.",$Bob.hey("Does this cryogenic chamber make me look fat?")))
+           ,A2($ElmTest.test,"asking a numeric question",A2($ElmTest.assertEqual,"Sure.",$Bob.hey("You are, what, like 15?")))
+           ,A2($ElmTest.test,"asking gibberish",A2($ElmTest.assertEqual,"Sure.",$Bob.hey(gibberishQuestion(20))))
+           ,A2($ElmTest.test,"talking forcefully",A2($ElmTest.assertEqual,"Whatever.",$Bob.hey("Let\'s go make out behind the gym!")))
+           ,A2($ElmTest.test,"using acronyms in regular speech",A2($ElmTest.assertEqual,"Whatever.",$Bob.hey("It\'s OK if you don\'t want to go to the DMV.")))
+           ,A2($ElmTest.test,"forceful questions",A2($ElmTest.assertEqual,"Whoa, chill out!",$Bob.hey("WHAT THE HELL WERE YOU THINKING?")))
+           ,A2($ElmTest.test,"shouting numbers",A2($ElmTest.assertEqual,"Whoa, chill out!",$Bob.hey("1, 2, 3 GO!")))
+           ,A2($ElmTest.test,"only numbers",A2($ElmTest.assertEqual,"Whatever.",$Bob.hey("1, 2, 3")))
+           ,A2($ElmTest.test,"question with only numbers",A2($ElmTest.assertEqual,"Sure.",$Bob.hey("4?")))
+           ,A2($ElmTest.test,
+           "shouting with special characters",
+           A2($ElmTest.assertEqual,"Whoa, chill out!",$Bob.hey("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!)")))
+           ,A2($ElmTest.test,"shouting with no exclamation mark",A2($ElmTest.assertEqual,"Whoa, chill out!",$Bob.hey("I HATE YOU")))
+           ,A2($ElmTest.test,"statement containing a question mark",A2($ElmTest.assertEqual,"Whatever.",$Bob.hey("Ending with ? means a question.")))
+           ,A2($ElmTest.test,"prattling on",A2($ElmTest.assertEqual,"Sure.",$Bob.hey("Wait! Hang on. Are you going to be OK?")))
+           ,A2($ElmTest.test,"silence",A2($ElmTest.assertEqual,"Fine. Be that way!",$Bob.hey("")))
+           ,A2($ElmTest.test,"prolonged silence",A2($ElmTest.assertEqual,"Fine. Be that way!",$Bob.hey("       ")))
+           ,A2($ElmTest.test,"alternate silences",A2($ElmTest.assertEqual,"Fine. Be that way!",$Bob.hey("\t  \n  \t   ")))
+           ,A2($ElmTest.test,
+           "on multiple line questions",
+           A2($ElmTest.assertEqual,"Whatever.",$Bob.hey("\nDoes this cryogenic chamber make me look fat?\nno")))]));
+   var runner = Elm.Native.Task.make(_elm).performSignal("runner",$Console.run($ElmTest.consoleRunner(tests)));
+   return _elm.Main.values = {_op: _op
+                             ,tests: tests
+                             ,character: character
+                             ,anyCharacter: anyCharacter
+                             ,uppercaseCharacter: uppercaseCharacter
+                             ,listOfCharacters: listOfCharacters
+                             ,gibberish: gibberish
+                             ,uppercaseGibberish: uppercaseGibberish
+                             ,gibberishQuestion: gibberishQuestion};
+};

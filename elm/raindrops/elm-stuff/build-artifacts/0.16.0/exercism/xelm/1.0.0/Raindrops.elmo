@@ -1,0 +1,20 @@
+Elm.Raindrops = Elm.Raindrops || {};
+Elm.Raindrops.make = function (_elm) {
+   "use strict";
+   _elm.Raindrops = _elm.Raindrops || {};
+   if (_elm.Raindrops.values) return _elm.Raindrops.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm);
+   var _op = {};
+   var addDrop = F4(function (input,test,rainDrop,resultString) {
+      return _U.eq(A2($Basics._op["%"],input,test),0) ? A2($Basics._op["++"],resultString,rainDrop) : resultString;
+   });
+   var cascade = function (number) {    return A4(addDrop,number,7,"Plong",A4(addDrop,number,5,"Plang",A4(addDrop,number,3,"Pling","")));};
+   var raindrops = function (number) {    return _U.eq(cascade(number),"") ? $Basics.toString(number) : cascade(number);};
+   return _elm.Raindrops.values = {_op: _op,addDrop: addDrop,cascade: cascade,raindrops: raindrops};
+};

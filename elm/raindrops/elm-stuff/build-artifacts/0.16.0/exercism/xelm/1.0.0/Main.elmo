@@ -1,0 +1,37 @@
+Elm.Main = Elm.Main || {};
+Elm.Main.make = function (_elm) {
+   "use strict";
+   _elm.Main = _elm.Main || {};
+   if (_elm.Main.values) return _elm.Main.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Console = Elm.Console.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $ElmTest = Elm.ElmTest.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Raindrops = Elm.Raindrops.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $Task = Elm.Task.make(_elm);
+   var _op = {};
+   var tests = A2($ElmTest.suite,
+   "Raindrops",
+   _U.list([A2($ElmTest.test,"1",A2($ElmTest.assertEqual,"1",$Raindrops.raindrops(1)))
+           ,A2($ElmTest.test,"3",A2($ElmTest.assertEqual,"Pling",$Raindrops.raindrops(3)))
+           ,A2($ElmTest.test,"5",A2($ElmTest.assertEqual,"Plang",$Raindrops.raindrops(5)))
+           ,A2($ElmTest.test,"7",A2($ElmTest.assertEqual,"Plong",$Raindrops.raindrops(7)))
+           ,A2($ElmTest.test,"6",A2($ElmTest.assertEqual,"Pling",$Raindrops.raindrops(6)))
+           ,A2($ElmTest.test,"9",A2($ElmTest.assertEqual,"Pling",$Raindrops.raindrops(9)))
+           ,A2($ElmTest.test,"10",A2($ElmTest.assertEqual,"Plang",$Raindrops.raindrops(10)))
+           ,A2($ElmTest.test,"14",A2($ElmTest.assertEqual,"Plong",$Raindrops.raindrops(14)))
+           ,A2($ElmTest.test,"15",A2($ElmTest.assertEqual,"PlingPlang",$Raindrops.raindrops(15)))
+           ,A2($ElmTest.test,"21",A2($ElmTest.assertEqual,"PlingPlong",$Raindrops.raindrops(21)))
+           ,A2($ElmTest.test,"25",A2($ElmTest.assertEqual,"Plang",$Raindrops.raindrops(25)))
+           ,A2($ElmTest.test,"35",A2($ElmTest.assertEqual,"PlangPlong",$Raindrops.raindrops(35)))
+           ,A2($ElmTest.test,"49",A2($ElmTest.assertEqual,"Plong",$Raindrops.raindrops(49)))
+           ,A2($ElmTest.test,"52",A2($ElmTest.assertEqual,"52",$Raindrops.raindrops(52)))
+           ,A2($ElmTest.test,"105",A2($ElmTest.assertEqual,"PlingPlangPlong",$Raindrops.raindrops(105)))]));
+   var runner = Elm.Native.Task.make(_elm).performSignal("runner",$Console.run($ElmTest.consoleRunner(tests)));
+   return _elm.Main.values = {_op: _op,tests: tests};
+};

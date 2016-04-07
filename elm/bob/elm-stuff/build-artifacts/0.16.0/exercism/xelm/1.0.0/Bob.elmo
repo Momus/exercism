@@ -1,0 +1,22 @@
+Elm.Bob = Elm.Bob || {};
+Elm.Bob.make = function (_elm) {
+   "use strict";
+   _elm.Bob = _elm.Bob || {};
+   if (_elm.Bob.values) return _elm.Bob.values;
+   var _U = Elm.Native.Utils.make(_elm),
+   $Basics = Elm.Basics.make(_elm),
+   $Debug = Elm.Debug.make(_elm),
+   $List = Elm.List.make(_elm),
+   $Maybe = Elm.Maybe.make(_elm),
+   $Regex = Elm.Regex.make(_elm),
+   $Result = Elm.Result.make(_elm),
+   $Signal = Elm.Signal.make(_elm),
+   $String = Elm.String.make(_elm);
+   var _op = {};
+   var shouting = function (query) {    return _U.eq($String.toUpper(query),query) && A2($Regex.contains,$Regex.regex("[A-z]+"),query);};
+   var silence = function (query) {    return A2($Regex.contains,$Regex.regex("^\\s*$"),query);};
+   var hey = function (query) {
+      return silence(query) ? "Fine. Be that way!" : shouting(query) ? "Whoa, chill out!" : A2($String.endsWith,"?",query) ? "Sure." : "Whatever.";
+   };
+   return _elm.Bob.values = {_op: _op,hey: hey,silence: silence,shouting: shouting};
+};
