@@ -6088,5 +6088,5 @@ Elm.Bob.make = function (_elm) {
    var hey = function (query) {
       return silence(query) ? "Fine. Be that way!" : shouting(query) ? "Whoa, chill out!" : A2($String.endsWith,"?",query) ? "Sure." : "Whatever.";
    };
-   return _elm.Bob.values = {_op: _op,silence: silence,shouting: shouting,hey: hey};
+   return _elm.Bob.values = {_op: _op,hey: hey,silence: silence,shouting: shouting};
 };
