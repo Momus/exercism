@@ -45,6 +45,10 @@ earthOrbitSec =
   3.15576e7
 
 
+planetConvert ageSec planet_string =
+  ageSec / ((.planet_string orbitEarthFraction) * earthOrbitSec)
+
+
 orbitEarthFraction :
   { earth : Float
   , jupiter : Float
