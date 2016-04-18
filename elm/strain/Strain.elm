@@ -22,21 +22,19 @@ myFilter isKeep function listIn listOut =
     first :: rest ->
       case isKeep of
         True ->
-          if function (first) then
-            let
-              nextList =
-                List.append listOut (first :: [])
-            in
-              myFilter True function rest nextList
+          if function first then
+            first
+              :: []
+              |> List.append listOut
+              |> myFilter True function rest
           else
             myFilter True function rest listOut
 
         False ->
-          if function (first) then
+          if function first then
             myFilter False function rest listOut
           else
-            let
-              nextList =
-                List.append listOut (first :: [])
-            in
-              myFilter False function rest nextList
+            first
+              :: []
+              |> List.append listOut
+              |> myFilter False function rest

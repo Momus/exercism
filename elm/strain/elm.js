@@ -5445,8 +5445,7 @@ Elm.Strain.make = function (_elm) {
                var _p1 = isKeep;
                if (_p1 === true) {
                      if ($function(_p2)) {
-                           var nextList = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
-                           var _v2 = true,_v3 = $function,_v4 = _p3,_v5 = nextList;
+                           var _v2 = true,_v3 = $function,_v4 = _p3,_v5 = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
                            isKeep = _v2;
                            function = _v3;
                            listIn = _v4;
@@ -5469,8 +5468,7 @@ Elm.Strain.make = function (_elm) {
                            listOut = _v13;
                            continue myFilter;
                         } else {
-                           var nextList = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
-                           var _v14 = false,_v15 = $function,_v16 = _p3,_v17 = nextList;
+                           var _v14 = false,_v15 = $function,_v16 = _p3,_v17 = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
                            isKeep = _v14;
                            function = _v15;
                            listIn = _v16;
