@@ -4,17 +4,17 @@ import List
 
 
 keep : (a -> Bool) -> List a -> List a
-keep function list =
-  myFilter True function list []
+keep f list =
+  myFilter True f list []
 
 
 discard : (a -> Bool) -> List a -> List a
-discard function list =
-  myFilter False function list []
+discard f list =
+  myFilter False f list []
 
 
 myFilter : Bool -> (a -> Bool) -> List a -> List a -> List a
-myFilter isKeep function listIn listOut =
+myFilter isKeep f listIn listOut =
   case listIn of
     [] ->
       listOut
@@ -22,19 +22,19 @@ myFilter isKeep function listIn listOut =
     first :: rest ->
       case isKeep of
         True ->
-          if function first then
+          if f first then
             first
               :: []
               |> List.append listOut
-              |> myFilter True function rest
+              |> myFilter True f rest
           else
-            myFilter True function rest listOut
+            myFilter True f rest listOut
 
         False ->
-          if function first then
-            myFilter False function rest listOut
+          if f first then
+            myFilter False f rest listOut
           else
             first
               :: []
               |> List.append listOut
-              |> myFilter False function rest
+              |> myFilter False f rest

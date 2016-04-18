@@ -5434,16 +5434,14 @@ Elm.Accumulate.make = function (_elm) {
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
    var _op = {};
-   var my_map = F3(function ($function,inList,outList) {
+   var my_map = F3(function (f,inList,outList) {
       my_map: while (true) {
          var _p0 = inList;
          if (_p0.ctor === "[]") {
                return outList;
             } else {
-               var nextAdd = A2($List._op["::"],$function(_p0._0),_U.list([]));
-               var newList = A2($List.append,outList,nextAdd);
-               var _v1 = $function,_v2 = _p0._1,_v3 = newList;
-               function = _v1;
+               var _v1 = f,_v2 = _p0._1,_v3 = A2($List.append,outList,A2($List._op["::"],f(_p0._0),_U.list([])));
+               f = _v1;
                inList = _v2;
                outList = _v3;
                continue my_map;

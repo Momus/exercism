@@ -5434,7 +5434,7 @@ Elm.Strain.make = function (_elm) {
    $Result = Elm.Result.make(_elm),
    $Signal = Elm.Signal.make(_elm);
    var _op = {};
-   var myFilter = F4(function (isKeep,$function,listIn,listOut) {
+   var myFilter = F4(function (isKeep,f,listIn,listOut) {
       myFilter: while (true) {
          var _p0 = listIn;
          if (_p0.ctor === "[]") {
@@ -5444,33 +5444,33 @@ Elm.Strain.make = function (_elm) {
                var _p2 = _p0._0;
                var _p1 = isKeep;
                if (_p1 === true) {
-                     if ($function(_p2)) {
-                           var _v2 = true,_v3 = $function,_v4 = _p3,_v5 = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
+                     if (f(_p2)) {
+                           var _v2 = true,_v3 = f,_v4 = _p3,_v5 = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
                            isKeep = _v2;
-                           function = _v3;
+                           f = _v3;
                            listIn = _v4;
                            listOut = _v5;
                            continue myFilter;
                         } else {
-                           var _v6 = true,_v7 = $function,_v8 = _p3,_v9 = listOut;
+                           var _v6 = true,_v7 = f,_v8 = _p3,_v9 = listOut;
                            isKeep = _v6;
-                           function = _v7;
+                           f = _v7;
                            listIn = _v8;
                            listOut = _v9;
                            continue myFilter;
                         }
                   } else {
-                     if ($function(_p2)) {
-                           var _v10 = false,_v11 = $function,_v12 = _p3,_v13 = listOut;
+                     if (f(_p2)) {
+                           var _v10 = false,_v11 = f,_v12 = _p3,_v13 = listOut;
                            isKeep = _v10;
-                           function = _v11;
+                           f = _v11;
                            listIn = _v12;
                            listOut = _v13;
                            continue myFilter;
                         } else {
-                           var _v14 = false,_v15 = $function,_v16 = _p3,_v17 = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
+                           var _v14 = false,_v15 = f,_v16 = _p3,_v17 = A2($List.append,listOut,A2($List._op["::"],_p2,_U.list([])));
                            isKeep = _v14;
-                           function = _v15;
+                           f = _v15;
                            listIn = _v16;
                            listOut = _v17;
                            continue myFilter;
@@ -5479,7 +5479,7 @@ Elm.Strain.make = function (_elm) {
             }
       }
    });
-   var discard = F2(function ($function,list) {    return A4(myFilter,false,$function,list,_U.list([]));});
-   var keep = F2(function ($function,list) {    return A4(myFilter,true,$function,list,_U.list([]));});
+   var discard = F2(function (f,list) {    return A4(myFilter,false,f,list,_U.list([]));});
+   var keep = F2(function (f,list) {    return A4(myFilter,true,f,list,_U.list([]));});
    return _elm.Strain.values = {_op: _op,keep: keep,discard: discard,myFilter: myFilter};
 };
