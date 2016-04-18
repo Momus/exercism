@@ -1,11 +1,42 @@
 module Strain (..) where
+
 import List
+
 
 keep : (a -> Bool) -> List a -> List a
 keep function list =
-  List.filter function list
+  myFilter True function list []
 
 
 discard : (a -> Bool) -> List a -> List a
 discard function list =
-  List.filter function list
+  myFilter False function list []
+
+
+myFilter : Bool -> (a -> Bool) -> List a -> List a -> List a
+myFilter isKeep function listIn listOut =
+  case listIn of
+    [] ->
+      listOut
+
+    first :: rest ->
+      case isKeep of
+        True ->
+          if function (first) then
+            let
+              nextList =
+                List.append listOut (first :: [])
+            in
+              myFilter True function rest nextList
+          else
+            myFilter True function rest listOut
+
+        False ->
+          if function (first) then
+            myFilter False function rest listOut
+          else
+            let
+              nextList =
+                List.append listOut (first :: [])
+            in
+              myFilter False function rest nextList
