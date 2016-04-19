@@ -18,8 +18,7 @@ isPangram sentence =
     else
       True
 
-
--- AFAIK, there's no way to generate a range of chars in Elm
+        
 alphabet : List String
 alphabet =
   [ "a", "b", "c", "d", "e", "f", "g", "h", "i"
@@ -27,7 +26,6 @@ alphabet =
   , "s", "t", "u", "v", "w", "x", "y", "z"]
 
 
---This may already be somewhere in Elm
 regexList : List String -> List Regex.Regex
 regexList listOfStrings =
   List.map regex listOfStrings
