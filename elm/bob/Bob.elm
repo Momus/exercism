@@ -1,7 +1,7 @@
 module Bob (..) where
 
-import String
-import Regex
+import String exposing (toUpper, endsWith)
+import Regex exposing (regex)
 
 
 hey : String -> String
@@ -10,7 +10,7 @@ hey query =
     "Fine. Be that way!"
   else if shouting query then
     "Whoa, chill out!"
-  else if String.endsWith "?" query then
+  else if endsWith "?" query then
     "Sure."
   else
     "Whatever."
@@ -18,10 +18,13 @@ hey query =
 
 silence : String -> Bool
 silence query =
-  Regex.contains (Regex.regex "^\\s*$") query
+  query
+    |> Regex.contains (regex "^\\s*$")
 
 
 shouting : String -> Bool
 shouting query =
-  (String.toUpper query == query)
-    && Regex.contains (Regex.regex "[A-z]+") query
+  (toUpper query == query)
+    && (query
+          |> Regex.contains (regex "[A-z]+")
+       )
