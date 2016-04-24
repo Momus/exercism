@@ -6083,12 +6083,10 @@ Elm.Pangram.make = function (_elm) {
    $Signal = Elm.Signal.make(_elm),
    $String = Elm.String.make(_elm);
    var _op = {};
-   var regexList = function (listOfStrings) {    return A2($List.map,$Regex.regex,listOfStrings);};
    var alphabet = _U.list(["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]);
-   var isPangram = function (sentence) {
-      var test_regex_list = regexList(alphabet);
-      var result_list = A2($List.map,A2($Basics.flip,$Regex.contains,$String.toLower(sentence)),test_regex_list);
-      return A2($List.member,false,result_list) ? false : true;
-   };
-   return _elm.Pangram.values = {_op: _op,isPangram: isPangram,alphabet: alphabet,regexList: regexList};
+   var allTrue = function (booList) {    return A2($List.member,false,booList) ? false : true;};
+   var rgxListFilter = F2(function (targetString,regexList) {    return A2($List.map,A2($Basics.flip,$Regex.contains,targetString),regexList);});
+   var regexList = function (listOfStrings) {    return A2($List.map,$Regex.regex,listOfStrings);};
+   var isPangram = function (sentence) {    return allTrue(A2(rgxListFilter,$String.toLower(sentence),regexList(alphabet)));};
+   return _elm.Pangram.values = {_op: _op,isPangram: isPangram,regexList: regexList,rgxListFilter: rgxListFilter,allTrue: allTrue,alphabet: alphabet};
 };
