@@ -1,46 +1,40 @@
-include ObjectSpace
 
-
+# Robots aware of their own existence
 class Robot
-  
-
   VERSION = 1
-  
+
   attr_accessor :name
 
+  @@robot_directory = []
 
   def initialize
-    @name = new_name
+    case
+    when @@robot_directory.empty?
+      Robot.directory_generator
+    when @@robot_directory.size == 1
+      # Prevent the directory from "looping around." IRL this would be
+      # handled differently, but this class is most certainly not IRL
+      raise "You've created too many robots! No more!"
+    end
+    @name = generate_name
   end
 
   def reset
-    @name = new_name
+    old_name = @name
+    @name = generate_name
+    @@robot_directory.push(old_name)
+  end
+
+  def self.directory_generator
+    @@robot_directory = Array 'AA000'..'ZZ999'
   end
 
   private
-  
-  def new_name
-    #First flush and update list of existing robots
-    @bot_list = []
-    ObjectSpace.each_object(Robot) { |bot| @bot_list.push(bot.name) }
 
-    #Then create name, check to see if it's on the list.
-    proposed_name = name_generator
-
-    #If there are to be a lot of robots, there probably should be some
-    #sort of escape conditon from this loop.
-    if @bot_list.include?(proposed_name) then new_name
-    else proposed_name
-    end
-    
+  def generate_name
+    name_index = rand(@@robot_directory.size)
+    given_name = @@robot_directory[name_index]
+    @@robot_directory.delete_at(name_index)
+    given_name
   end
-
-
-  def name_generator
-    new_string = ""
-    2.times {new_string << ('A'..'Z').to_a[rand(26)]}
-    3.times {new_string << rand(10).to_s}
-    new_string
-  end
-  
 end

@@ -1,0 +1,19 @@
+module RunLengthEncoding (version, encode, decode) where
+
+version: Int
+version =
+  2
+
+
+encode: String -> String
+encode textData =
+  "CCCBBSS"
+
+
+decode: String -> String
+decode rlEncoded =
+  "AABBBCCCC"
+
+            
+        
+      

@@ -1,0 +1,110 @@
+#+AUTHOR: Dmitri Brengauz
+#+EMAIL:  dmitri@momus.net
+#+STARTUP: hidestars
+
+#+BEGIN_HTML
+---
+layout: default
+title: My Exorcism Blog
+excerpt: It was the best of times, it was the blurst of times...
+---
+#+END_HTML
+
+ 
+* init.el
+  #+BEGIN_SRC emacs-lisp :tangle ./init.el
+  
+  #+END_SRC
+
+* About
+*** Introduction
+    The purpose of this site is to record any general musings I may
+    have while completing [[http://exercism.io][Exercism.io]] assignments. The second purpose
+    is just to practice using org-mode for website generation.  The
+    raw org-mode file used to generate this blog can be found it the
+    [[https://github.com/Momus/exercism][Github repository]].
+***** Credits
+      Much of the wisdom used here was gleand from the [[http://orgmode.org/worg/org-tutorials/org-jekyll.html][Org Mode
+      Tutorials Site]] and [[http://endlessparentheses.com/how-i-blog-one-year-of-posts-in-a-single-org-file.html][Endless Parantheses]]
+*** Set up
+***** Jekyll gem: gem install jekyll
+***** [[http://octopress.org/docs/][Octopress]]
+******* Set Up
+********* git clone git://github.com/imathis/octopress.git blog
+********* cd blog ; bundle install ; rake install
+******* Deployment
+********* [2/3] Digital Ocean
+          - [ ] [0/1] Create a  user for the app:
+            - [ ] sudo su 
+          - [X] Virtual Host
+            tangle with /usr/local/apache24/sites-enabled/exercism.momus.net
+            #+BEGIN_SRC sh
+             
+            #+END_SRC
+          - [X] Let's Encrypt!
+            just add a line to /usr/local/etc/letsencrypt.sh/domains.txt and run letsencrypt.sh --cron
+******* [1/3] Theme: Trying [[https://mmistakes.github.io/hpstr-jekyll-theme/theme-setup/][HPSTR]]
+        - [X] Fork HPSTR repository; clone in parent exercim directory (not in blog)
+          #+BEGIN_SRC sh
+            cd $PATH/exercism
+            git clone git@github.com:Momus/hpstr-jekyll-theme.git hpstr
+          #+END_SRC
+        - [ ] [0/4] Link the following directories into blog directory:
+          - [ ] _includes/
+          - [ ] _layouts/
+          - [ ] _sass/
+          - [ ] assets/
+        - [ ] [0/5] Clone and personalize as needed
+          - [ ] about/
+          - [ ] posts/
+          - [ ] tags/
+          - [ ] feed.xml
+          - [ ] index.html
+        - [ ] edit _config.yml
+ 
+* Languages
+*** Ruby
+***** Robot Name
+      #+BEGIN_SRC ruby :tangle ./ruby/robot-name/robot_name.rb
+               # Robots aware of their own existence
+        class Robot
+          VERSION = 1
+
+          attr_accessor :name
+
+          @@robot_directory = []
+
+          def initialize
+            case
+            when @@robot_directory.empty?
+              Robot.directory_generator
+            when @@robot_directory.size == 1
+              # Prevent the directory from "looping around." IRL this would be
+              # handled differently, but this class is most certainly not IRL
+              raise "You've created too many robots! No more!"
+            end
+            @name = generate_name
+          end
+
+          def reset
+            old_name = @name
+            @name = generate_name
+            @@robot_directory.push(old_name)
+          end
+
+          def self.directory_generator
+            @@robot_directory = Array 'AA000'..'ZZ999'
+          end
+
+          private
+
+          def generate_name
+            name_index = rand(@@robot_directory.size)
+            given_name = @@robot_directory[name_index]
+            @@robot_directory.delete_at(name_index)
+            given_name
+          end
+        end      
+      #+END_SRC
+*** Elm
+    
