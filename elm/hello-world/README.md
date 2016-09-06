@@ -1,6 +1,6 @@
 # Hello World
 
-Write a program that greets the user by name, or by saying "Hello, World!" if no name is given.
+Write a function that greets the user by name, or by saying "Hello, World!" if no name is given.
 
 ["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is the traditional first program for beginning programming in a new language.
 
@@ -10,11 +10,12 @@ Write a program that greets the user by name, or by saying "Hello, World!" if no
 
 ## Specification
 
-The `Hello World!` program will greet me, the caller.
+Write a `Hello World!` function that can greet someone given their name.
+The function should return the appropriate greeting.
 
-If I tell the program my name is Alice, it will greet me by saying "Hello, Alice!".
+For an input of "Alice", the response should be "Hello, Alice!".
 
-If I neglect to give it my name, it will greet me by saying "Hello, World!"
+If a name is not given, the response should be "Hello, World!"
 
 ## Test-Driven Development
 
@@ -36,9 +37,18 @@ It will also provide you with a safety net to explore other solutions without br
 
 Submissions are encouraged to be general, within reason. Having said that, it's also important not to over-engineer a solution.
 
-It's important to remember that the goal is to make code as expressive and readable as we can. However, solutions to the hello-world exercise will be not be reviewed by a person, but by rikki- the robot, who will offer an encouraging word.
+It's important to remember that the goal is to make code as expressive and readable as we can. However, solutions to the hello-world exercise will not be reviewed by a person, but by rikki- the robot, who will offer an encouraging word.
 
+## Getting Started
+
+To get started, please see docs on exercism.io:
+
+http://exercism.io/languages/elm
 
 ## Source
 
-This is a program to introduce users to using Exercism [view source](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+
+## Submitting Incomplete Problems
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+
