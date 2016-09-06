@@ -6,24 +6,23 @@ import String
 
 isPangram : String -> Bool
 isPangram sentence =
-    alphabet
-        |> regexList
-        |> rgxListFilter (String.toLower sentence)
-        |> allTrue
+    sentence
+        |> String.toLower
+        |> rgxListFilter alphabetRgx
 
 
-regexList : List String -> List Regex.Regex
-regexList listOfStrings =
-    List.map regex listOfStrings
-
-
-rgxListFilter : String -> List Regex.Regex -> List Bool
-rgxListFilter targetString regexList =
-    regexList
+{-| Test a string to see if it matches each element of a list of
+regular expressions. Retrurns true if every member of the list
+mathces.
+-}
+rgxListFilter : List Regex.Regex -> String -> Bool
+rgxListFilter rgxList targetString =
+    rgxList
         |> List.map
             (targetString
                 |> flip Regex.contains
             )
+        |> allTrue
 
 
 allTrue : List Bool -> Bool
@@ -32,6 +31,16 @@ allTrue booList =
         False
     else
         True
+
+
+rgxList : List String -> List Regex.Regex
+rgxList listOfStrings =
+    List.map regex listOfStrings
+
+
+alphabetRgx : List Regex.Regex
+alphabetRgx =
+    rgxList alphabet
 
 
 alphabet : List String
