@@ -18,6 +18,16 @@ the compressed data, which makes it a lossless data compression.
 "AABCCCDEEEE"  ->  "2AB3CD4E"  ->  "AABCCCDEEEE"
 ```
 
+## Getting Started
+
+To get started, please see docs on exercism.io:
+
+http://exercism.io/languages/elm
+
 ## Source
 
 Wikipedia [https://en.wikipedia.org/wiki/Run-length_encoding](https://en.wikipedia.org/wiki/Run-length_encoding)
+
+## Submitting Incomplete Problems
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+

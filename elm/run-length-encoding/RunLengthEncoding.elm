@@ -1,8 +1,6 @@
--- module RunLengthEncoding (version, encode, decode) where
-module RunLengthEncoding(..) where
-
-import String
-import Char
+module RunLengthEncoding exposing (version, encode, decode)
+ 
+import String as S
 
 
 version: Int
@@ -23,7 +21,7 @@ decode rlEncoded =
 tailEncode : String -> String -> Char -> String
 tailEncode inString outString oldChar =
   let
-    stringTuple = String.uncons inString
+    stringTuple = S.uncons inString
                   
   in
     case stringTuple of
@@ -32,13 +30,13 @@ tailEncode inString outString oldChar =
           
       Just (c,rest) ->
         let
-          nextCharAsStr = String.left 1 rest
+          nextCharAsStr = S.left 1 rest
 
         in
           case nextCharAsStr of
             "" -> if c == oldChar
                   then incrementOutString c outString True
-                  else outString ++ (String.fromChar c)
+                  else outString ++ (S.fromChar c)
                        
             _ ->
               if c == oldChar
@@ -93,12 +91,12 @@ crawlEndOfStringForInt string lastNum nextPosition =
   -- starts. Calling with something other than 1 is rarely useful
   let
     testString =
-      String.right nextPosition string
+      S.right nextPosition string
             
     restString =
-      String.dropRight (nextPosition - 1) string
+      S.dropRight (nextPosition - 1) string
   in
-    case String.toInt(testString) of
+    case S.toInt(testString) of
       Err msg ->
         (lastNum, restString)
 
@@ -109,4 +107,4 @@ crawlEndOfStringForInt string lastNum nextPosition =
 justTheChar : Char -> String
 justTheChar c =
 -- Strips of the annoying ' when converting Char to a String.
- String.slice 1 2 (toString c)
+ S.slice 1 2 (toString c)
