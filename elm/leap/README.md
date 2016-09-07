@@ -18,12 +18,24 @@ this look-up, pretend it doesn't exist and implement it yourself.
 
 ## Notes
 
+Though our exercise adopts some very simple rules, there is more to
+learn!
+
 For a delightful, four minute explanation of the whole leap year
 phenomenon, go watch [this youtube video][video].
 
 [video]: http://www.youtube.com/watch?v=xX96xng7sAE
 
+## Getting Started
+
+To get started, please see docs on exercism.io:
+
+http://exercism.io/languages/elm
 
 ## Source
 
-JavaRanch Cattle Drive, exercise 3 [view source](http://www.javaranch.com/leap.jsp)
+JavaRanch Cattle Drive, exercise 3 [http://www.javaranch.com/leap.jsp](http://www.javaranch.com/leap.jsp)
+
+## Submitting Incomplete Problems
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+
