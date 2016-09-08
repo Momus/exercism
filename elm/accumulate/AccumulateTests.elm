@@ -1,36 +1,39 @@
-module Main (..) where
+port module Main exposing (..)
 
-import Task
-import Console
-import ElmTest exposing (..)
+import Test.Runner.Node exposing (run)
+import Json.Encode exposing (Value)
+import Test exposing (..)
+import Expect
 import Accumulate exposing (accumulate)
 import String
 
 
 square : Int -> Int
 square x =
-  x * x
+    x * x
 
 
 tests : Test
 tests =
-  suite
-    "Accumulate"
-    [ test
-        "[]] Accumulate"
-        (assertEqual [] (accumulate square []))
-    , test
-        "square Accumulate"
-        (assertEqual [ 1, 4, 9 ] (accumulate square [ 1, 2, 3 ]))
-    , test
-        "toUpper Accumulate"
-        (assertEqual [ "HELLO", "WORLD" ] (accumulate String.toUpper [ "hello", "world" ]))
-    , test
-        "reverse Accumulate"
-        (assertEqual [ "olleh", "dlrow" ] (accumulate String.reverse [ "hello", "world" ]))
-    ]
+    describe "Accumulate"
+        [ test "[]] Accumulate" <|
+            \() -> Expect.equal [] (accumulate square [])
+        , test "square Accumulate" <|
+            \() -> Expect.equal [ 1, 4, 9 ] (accumulate square [ 1, 2, 3 ])
+        , test "toUpper Accumulate" <|
+            \() ->
+                Expect.equal [ "HELLO", "WORLD" ]
+                    (accumulate String.toUpper [ "hello", "world" ])
+        , test "reverse Accumulate" <|
+            \() ->
+                Expect.equal [ "olleh", "dlrow" ]
+                    (accumulate String.reverse [ "hello", "world" ])
+        ]
 
 
-port runner : Signal (Task.Task x ())
-port runner =
-  Console.run (consoleRunner tests)
+main : Program Value
+main =
+    run emit tests
+
+
+port emit : ( String, Value ) -> Cmd msg
