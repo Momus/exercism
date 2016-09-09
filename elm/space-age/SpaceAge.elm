@@ -16,28 +16,28 @@ ageOn : Planet -> Float -> Float
 ageOn planet ageSec =
     case planet of
         Mercury ->
-            ageSec / (orbitEarthFraction.mercury * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.mercury * earthOrbitSec)
 
         Venus ->
-            ageSec / (orbitEarthFraction.venus * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.venus * earthOrbitSec)
 
         Earth ->
-            ageSec / (orbitEarthFraction.earth * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.earth * earthOrbitSec)
 
         Mars ->
-            ageSec / (orbitEarthFraction.mars * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.mars * earthOrbitSec)
 
         Jupiter ->
-            ageSec / (orbitEarthFraction.jupiter * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.jupiter * earthOrbitSec)
 
         Saturn ->
-            ageSec / (orbitEarthFraction.saturn * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.saturn * earthOrbitSec)
 
         Uranus ->
-            ageSec / (orbitEarthFraction.uranus * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.uranus * earthOrbitSec)
 
         Neptune ->
-            ageSec / (orbitEarthFraction.neptune * earthOrbitSec)
+            ageSec / (orbitPropotionToEarth.neptune * earthOrbitSec)
 
 
 earthOrbitSec : Float
@@ -45,7 +45,7 @@ earthOrbitSec =
     3.15576e7
 
 
-orbitEarthFraction :
+type alias PlanetsStat =
     { earth : Float
     , jupiter : Float
     , mars : Float
@@ -55,7 +55,9 @@ orbitEarthFraction :
     , uranus : Float
     , venus : Float
     }
-orbitEarthFraction =
+
+orbitPropotionToEarth : PlanetsStat
+orbitPropotionToEarth =
     { earth = 1.0
     , mercury = 0.2408467
     , venus = 0.61519726
