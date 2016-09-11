@@ -6,9 +6,9 @@ returns a new collection containing those elements where the predicate
 is true, while `discard` returns a new collection containing those
 elements where the predicate is false.
 
-Write two functions that each take a function and a list.  One of them will
-return the list of items for which the passed in function is true, and the
-other will return the items for which it is false.
+Write two functions that each take a function and a list.  One of them
+will return the list of items for which the passed in function is
+true, and the other will return the items for which it is false.
 
 For example, given the collection of numbers:
 
@@ -28,17 +28,28 @@ While your discard operation should produce:
 
 Note that the union of keep and discard is all the elements.
 
-The functions may be called `keep` and `discard`, or they may need different
-names in order to not clash with existing functions or concepts in your
-language.
+The functions may be called `keep` and `discard`, or they may need
+different names in order to not clash with existing functions or
+concepts in your language.
 
 ## Restrictions
 
 Keep your hands off that filter/reject/whatchamacallit functionality
-provided by your standard library!  Solve this one yourself using other
-basic tools instead.
+provided by your standard library!  Solve this one yourself using
+other basic tools instead.
 
+## Getting Started
+
+To get started, please see docs on exercism.io:
+
+http://exercism.io/languages/elm
 
 ## Source
 
-Conversation with James Edward Gray II [view source](https://twitter.com/jeg2)
+Conversation with James Edward Gray
+II [https://twitter.com/jeg2](https://twitter.com/jeg2)
+
+## Submitting Incomplete Problems
+It's possible to submit an incomplete solution so you can see how
+others have completed the exercise.
+
