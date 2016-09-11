@@ -16,8 +16,19 @@ natural numbers and the sum of the squares is 2640:
 
     3025 - 385 = 2640
 
+## Getting Started
+
+To get started, please see docs on exercism.io:
+
+http://exercism.io/languages/elm
 
 ## Source
 
-Problem 6 at Project Euler
-[view source](http://projecteuler.net/problem=6)
+Problem 6 at Project
+Euler
+[http://projecteuler.net/problem=6](http://projecteuler.net/problem=6)
+
+## Submitting Incomplete Problems
+It's possible to submit an incomplete solution so you can see how
+others have completed the exercise.
+
