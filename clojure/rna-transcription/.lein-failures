@@ -1,0 +1,1 @@
+{"rna-transcription-test" ["transcribes-guanine-to-cytosine" "transcribes-adenine-to-uracil" "it-validates-dna-strands" "it-transcribes-all-nucleotides" "transcribes-cytosine-to-guanine"]}
