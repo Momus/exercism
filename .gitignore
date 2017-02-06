@@ -8,3 +8,5 @@ elm-stuff/
 repl-temp-*
 >>>>>>> 7dbf9b1715a47d63ed60e990bc8822bce6fab742
 *elm-stuff/*
+*lein*
+*target/
