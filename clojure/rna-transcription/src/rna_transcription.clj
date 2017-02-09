@@ -2,22 +2,21 @@
 
 
 (def dna-to-rna (hash-map
-                 :G  "C"
-                 :C  "G"
-                 :T  "A"
-                 :A  "U"
+                 "G"  "C"
+                 "C"  "G"
+                 "T"  "A"
+                 "A"  "U"
                  ))
 
 
 (defn transcribe
   [strand transcription-map]
-  (clojure.string/join
+  (->> strand
    (map
-    #( if ((keyword (str %1)) transcription-map)
-      ((keyword (str %1)) transcription-map)
-      (throw (AssertionError.))
-      )
-    strand)))
+    #(if (get transcription-map (str %1))
+       (get transcription-map (str %1))
+       (throw (AssertionError.))))
+   clojure.string/join))
 
 
 (defn to-rna
