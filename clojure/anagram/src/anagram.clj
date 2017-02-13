@@ -1,19 +1,20 @@
 (ns anagram)
 
 
-(use '[clojure.string :only (split lower-case)])
+(use '[clojure.string :only (lower-case)])
 
 
- (defn anagrams-for [word possible-anagrams] 
+(defn anagram?
+  [one two]
+  (let [low_one  (lower-case one)
+        low_two  (lower-case two)]
+    (and (not= low_one low_two)
+         (= (frequencies low_one)
+            (frequencies low_two)))))
+
+
+(defn anagrams-for
+  [word possible-anagrams]
   (do
-    (def word-freq (frequencies (lower-case word)))
-    (loop [[next-word & other-words] possible-anagrams
-           outlist [] ]
-      (if (empty? next-word)
-        outlist
-        (do
-          (def target (lower-case next-word))
-          (if (and (= (frequencies target) word-freq)
-                   (not= target (lower-case word)))
-            (recur (into [] other-words) (conj outlist next-word) )
-            (recur (into [] other-words) outlist)))))))
+    (def anagram-of? (partial anagram? word))
+    (filter anagram-of? possible-anagrams)))
