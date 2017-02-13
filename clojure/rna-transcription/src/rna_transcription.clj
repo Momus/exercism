@@ -13,9 +13,9 @@
   [strand transcription-map]
   (->> strand
    (map
-    #(if (get transcription-map (str %1))
-       (get transcription-map (str %1))
-       (throw (AssertionError.))))
+   #(if-let [nucleotide (get transcription-map (str %1))]
+      nucleotide
+      (throw (AssertionError.))))
    clojure.string/join))
 
 
