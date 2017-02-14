@@ -1,12 +1,15 @@
-<<<<<<< HEAD
 */elmstuff/*
-=======
 # elm-package generated files
 elm-package.json
 elm-stuff/
 # elm-repl generated files
 repl-temp-*
->>>>>>> 7dbf9b1715a47d63ed60e990bc8822bce6fab742
 *elm-stuff/*
 *lein*
 *target/
+*nrepl*
+pom.properties
+*pom.prop*
+*.lein*
+*META-INF*
+project.clj
