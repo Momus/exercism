@@ -3,19 +3,13 @@
 ;;; Commentary:
 
 ;;; Code:
-(defun freq-map (word)
-  "Break WORD up into a list of chars  then sort them."
-  (sort (cl-loop for c
-                 from 0 to (- (length word) 1)
-                 collect (aref word c))
-        '<))
-
-
 (defun anagramp (word-1 word-2)
   "True if WORD-1 is an anagram of WORD-2."
-  (and (not (equal word-1 word-2))
-       (equal (freq-map (downcase word-1))
-              (freq-map (downcase word-2)))))
+  (let ((w1 (downcase word-1))
+        (w2 (downcase word-2)))
+    (and (not (equal w1 w2))
+         (equal (cl-sort w1 '<)
+                (cl-sort w2 '<)))))
 
 
 (defun anagrams-for (word word-list)
