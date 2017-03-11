@@ -5,12 +5,9 @@
 ;;; Code:
 (defun leap-year-p (year)
   "Return t if YEAR is a leap year."
-  (if (= (mod year 400) 0)
-      t
-    (if (and (/= (mod year 100) 0)
-             (= (mod year 4) 0))
-        t
-      nil)))
+  (or (zerop (mod year 400))
+      (and (not (zerop(mod year 100)))
+            (zerop (mod year 4)))))
 
 (provide 'leap)
 ;;; leap.el ends here
