@@ -1,4 +1,3 @@
-
 # Robots aware of their own existence
 class Robot
   VERSION = 1
@@ -8,10 +7,9 @@ class Robot
   @@robot_directory = []
 
   def initialize
-    case
-    when @@robot_directory.empty?
+    if @@robot_directory.empty?
       Robot.directory_generator
-    when @@robot_directory.size == 1
+    elsif @@robot_directory.size == 1
       # Prevent the directory from "looping around." IRL this would be
       # handled differently, but this class is most certainly not IRL
       raise "You've created too many robots! No more!"
@@ -37,4 +35,4 @@ class Robot
     @@robot_directory.delete_at(name_index)
     given_name
   end
-end
+end # class Robot

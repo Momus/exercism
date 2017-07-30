@@ -1,6 +1,13 @@
 (ns nucleotide-count)
 
 
-(defn count
-  [ ]
+(defn nucleotide-count
+
+  [ sequence ]
+
+  (nucleotide-count \Z sequence )
+  
+  [ sequence]
+  0
   )
+ 

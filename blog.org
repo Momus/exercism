@@ -106,5 +106,14 @@ excerpt: It was the best of times, it was the blurst of times...
           end
         end      
       #+END_SRC
-*** Elm
-    
+*** Clojure
+***** Setup
+      How to start a clojure session:
+      1. Open the next assignment. (C-u open specific assignment)
+         - Which is the next assignment? exercism fetch clojure
+         - Open the three files:
+           - exercsim/clojure/assignment/README.md
+           - exercsim/clojure/assignment/test/assignment_camel_case_test.clj
+           - exercsim/clojure/assignment/src/assighnment-kebab-case.clj
+      2. cider-jack in -- seems to work from the src/assignment.clj buffer
+      3. ??? Run tests
