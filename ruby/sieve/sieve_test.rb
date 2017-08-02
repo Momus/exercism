@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 require 'minitest/autorun'
+require 'minitest/pride'
 require_relative 'sieve'
 
 # Common test data version: 1.0.0 f2b2693
@@ -63,7 +64,7 @@ class SieveTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
-     skip
+    # skip
     assert_equal 1, BookKeeping::VERSION
   end
 end
