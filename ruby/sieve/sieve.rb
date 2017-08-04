@@ -1,4 +1,4 @@
-## Top Level Documentation for Rubocop
+## Create a Sieve object containing an array of primes up to a limit.
 class Sieve
   attr_reader :primes
 
@@ -14,17 +14,15 @@ class Sieve
   private
 
   def sieve(limit)
-    ## Skiping  all even numbers
     odds = (3..limit).step(2).to_a
-    until odds.size.zero?
+    until odds.size < Math.sqrt(limit)
       last_prime = odds.shift
       odds.each_index do |n|
-        unless odds[n].nil?
-          odds.delete_at(n) if (odds[n] % last_prime).zero?
-        end
+        odds.delete_at(n) if (odds[n] % last_prime).zero?
       end
       @primes << last_prime
     end
+    @primes.concat(odds)
   end
 end
 

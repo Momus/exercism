@@ -1,8 +1,10 @@
+
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
+require 'minitest/pride'
 
 require 'prime'
 ERROR_MESSAGE = <<-MSG.freeze
@@ -35,9 +37,9 @@ class TestPrimes < Minitest::Test
     assert_equal 3, Prime.nth(2)
   end
 
-  def test_sixth_prime
+  def test_seventh_prime
     skip
-    assert_equal 13, Prime.nth(6)
+    assert_equal 17, Prime.nth(7)
   end
 
   def test_big_prime
