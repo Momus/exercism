@@ -62,8 +62,13 @@ excerpt: It was the best of times, it was the blurst of times...
           - [ ] index.html
         - [ ] edit _config.yml
  
-* Languages
+*** Languages
 *** Ruby
+***** Setup
+      Everything works for me now. I need to remember to update this
+      if something gets broken.
+******* Ruby
+******* Emacs
 ***** Robot Name
       #+BEGIN_SRC ruby :tangle ./ruby/robot-name/robot_name.rb
                # Robots aware of their own existence
