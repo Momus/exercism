@@ -6,11 +6,11 @@
 
 (defn anagram?
   [one two]
-  (let [low_one  (lower-case one)
-        low_two  (lower-case two)]
-    (and (not= low_one low_two)
-         (= (frequencies low_one)
-            (frequencies low_two)))))
+  (let [low-one  (lower-case one)
+        low-two  (lower-case two)]
+    (and (not= low-one low-two)
+         (= (frequencies low-one)
+            (frequencies low-two)))))
 
 
 (defn anagrams-for

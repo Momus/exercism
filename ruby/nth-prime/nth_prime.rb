@@ -23,15 +23,19 @@ class Prime
     n * (log(n) + log(log(n)))
   end
 
-  def self.sieve(limit)
-    ## Complete the set of @primes up to limit.
-    unknowns = ((@primes.last + 2)..limit).step(2).to_a
+  def self.eliminate_known_primes(unknowns)
     ## First sieve out all the known @primes
     @primes[2..-1].each do |p|
       unknowns.each_with_index do |u, i|
         unknowns.delete_at(i) if (u % p).zero?
       end
     end
+  end
+
+  def self.sieve(limit)
+    ## Complete the set of @primes up to limit.
+    unknowns = ((@primes.last + 2)..limit).step(2).to_a
+    eliminate_known_primes(unknowns)
     ## Then the remianing unkowns.
     last_prime = unknowns.shift
     until last_prime < Math.sqrt(limit)
