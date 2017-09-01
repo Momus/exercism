@@ -1,7 +1,7 @@
 (ns rna-transcription)
 
 
-(def dna->rna (hash-map
+(def dna-to-rna (hash-map
                  "G"  "C"
                  "C"  "G"
                  "T"  "A"
@@ -23,4 +23,4 @@
   "Given a strning of uppercase letters A--G return the same type of
   string where the letters correspond to the RNA complement."
   [strand] 
-  (transcribe strand dna->rna))
+  (transcribe strand dna-to-rna))
