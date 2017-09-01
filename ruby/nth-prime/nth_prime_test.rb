@@ -33,12 +33,12 @@ class TestPrimes < Minitest::Test
   end
 
   def test_second
-    skip
+    
     assert_equal 3, Prime.nth(2)
   end
 
   def test_seventh_prime
-    skip
+    
     assert_equal 17, Prime.nth(7)
   end
 
