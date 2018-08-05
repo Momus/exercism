@@ -21,8 +21,7 @@
     \6 6
     \7 7
     \8 8
-    \9 9
-    "Not an int convertable char"))
+    \9 9 ))
 
 (defn armstrong
   "Convert NUM into its Armstrong numeral."
