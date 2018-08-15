@@ -1,6 +1,5 @@
 (ns reverse-string)
 
 (defn reverse-string [string]
-  (if (empty? string)
-    ""
-    (reduce #(str %2 %1 ) string)))
+  (apply str
+         (reduce #(cons %2 %1 ) (lazy-seq) string)))
