@@ -10,14 +10,8 @@ class Grains
     end
 
     def total
-      @total ||= begin
-                   (START_SQUARE..BOARD_SIZE).reduce do |acc, elem|
-                     acc + dump_wheat(elem)
-                   end
-                 end
+      @total ||= (dump_wheat(BOARD_SIZE + 1) - 1)
     end
-
-    private
 
     def dump_wheat(square_number)
       ROYAL_MULTIPLIER**(square_number - 1)
