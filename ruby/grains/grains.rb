@@ -1,14 +1,20 @@
 ## Counting grains on a chessboard
 class Grains
+  BOARD_SIZE = 64
+  ROYAL_MULTIPLIER = 2
+  START_SQUARE = 1
   class << self
-    def square(n)
-      raise ArgumentError unless n > 0 && n < 65
-      2**(n - 1)
+    def square(number)
+      raise ArgumentError unless number > 0 && number < BOARD_SIZE + 1
+      dump_wheat(number)
     end
 
     def total
-      ## Caching 18_446_744_073_709_551_615 is faster! But...
-      (1..64).reduce { |acc, elem| acc + 2**(elem - 1) }
+      @total ||= (dump_wheat(BOARD_SIZE + 1) - 1)
+    end
+
+    def dump_wheat(square_number)
+      ROYAL_MULTIPLIER**(square_number - 1)
     end
   end
 end
