@@ -15,7 +15,7 @@
           )
     outvector))
 
-(drop-factor 21)
+
 
 (defun convert (num)
   "Convert integer N to its raindrops string."
