@@ -1,4 +1,4 @@
-## A new kind of clock in Ruby.
+## A new kind of 24 hour clock in Ruby.
 class Clock
   def initialize(hour: 0, minute: 0)
     @hour = hour
