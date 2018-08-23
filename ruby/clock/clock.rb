@@ -3,7 +3,7 @@ class Clock
   MINUTES_IN_A_DAY = 1440
 
   def initialize(hour: 0, minute: 0)
-    @clock = (make_mins(hour) + minute) % MINUTES_IN_A_DAY
+    @clock = ((hour * 60) + minute) % MINUTES_IN_A_DAY
   end
 
   def to_s
@@ -32,10 +32,6 @@ class Clock
   end
 
   private
-
-  def make_mins(hours)
-    hours * 60
-  end
 
   def hhmm_format(minutes)
     (minutes / 60).to_s.rjust(2, '0') << ':' <<
