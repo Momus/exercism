@@ -3,33 +3,29 @@ class Clock
   MINUTES_IN_A_DAY = 1440
 
   def initialize(hour: 0, minute: 0)
-    @clock = ((hour * 60) + minute) % MINUTES_IN_A_DAY
+    @clock = ((hour * 60) + minute) %
+             MINUTES_IN_A_DAY
   end
 
   def to_s
     hhmm_format(@clock)
   end
 
-  ## This seems like a rare instance of where possibly breaking
-  ## encapsulation by using .instance_variable_get may be justified,
-  ## since an accessor method would break the API, and we're dealing
-  ## with objects of the same class as part of the definition of that
-  ## class.
   def +(other)
-    hhmm_format((@clock +
-                 other.instance_variable_get(:@clock)) %
-                MINUTES_IN_A_DAY)
+    Clock.new minute: @clock + other.clock
   end
 
   def -(other)
-    hhmm_format((@clock -
-                 other.instance_variable_get(:@clock)) %
-                MINUTES_IN_A_DAY)
+    Clock.new minute: @clock - other.clock
   end
 
   def ==(other)
-    @clock == other.instance_variable_get(:@clock)
+    @clock == other.clock
   end
+
+  protected
+
+  attr_reader :clock
 
   private
 
