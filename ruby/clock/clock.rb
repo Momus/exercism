@@ -8,20 +8,24 @@ class Clock
   end
 
   def to_s
-    (@clock / 60).to_s.rjust(2, '0') << ':' <<
+    (@clock / 60).to_s.rjust(2, '0') <<
+      ':' <<
       (@clock % 60).to_s.rjust(2, '0')
   end
 
   def +(other)
-    Clock.new minute: @clock + other.clock
+    Clock.new minute: @clock +
+                      other.clock
   end
 
   def -(other)
-    Clock.new minute: @clock - other.clock
+    Clock.new minute: @clock -
+                      other.clock
   end
 
   def ==(other)
-    @clock == other.clock
+    @clock ==
+      other.clock
   end
 
   protected
