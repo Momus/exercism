@@ -8,7 +8,8 @@ class Clock
   end
 
   def to_s
-    hhmm_format(@clock)
+    (@clock / 60).to_s.rjust(2, '0') << ':' <<
+      (@clock % 60).to_s.rjust(2, '0')
   end
 
   def +(other)
@@ -26,13 +27,6 @@ class Clock
   protected
 
   attr_reader :clock
-
-  private
-
-  def hhmm_format(minutes)
-    (minutes / 60).to_s.rjust(2, '0') << ':' <<
-      (minutes % 60).to_s.rjust(2, '0')
-  end
 end
 
 module BookKeeping

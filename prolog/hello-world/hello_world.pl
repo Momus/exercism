@@ -6,4 +6,6 @@
 % Replace the goal below with
 % your implementation.
 
-hello_world :- format('Hello World!'~n).
+%hello_world :- format('Hello World!'~n).
+hello_world('Hello World!').
+hello_world('Alice', 'Hello Alice!').
