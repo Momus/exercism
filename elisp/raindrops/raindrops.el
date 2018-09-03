@@ -4,14 +4,34 @@
 
 ;;; Code:
 (require 'cl)
+(require 'dash)
+
+(defun pling (str num)
+  "Take a STR and a NUM and pling!"
+  (if (zerop (% num 3))
+      (concat str "Pling") str))
+
+(defun plang (str num)
+  "Take a STR and a NUM and plang!"
+  (if (zerop (% num 5))
+    (concat str "Plang") str))
+
+(defun plong (str num)
+  "Take a STR and a NUM and plong!"
+  (if (zerop (% num 7))
+      (concat str "Plong") str))
+
+(defun drop (str num)
+  "Dropps the message of STR and NUM."
+  (if (equal "" str) (number-to-string num) str))
 
 (defun convert (num)
   "Convert integer NUM to its raindrops string."
-  (let ((outstring ""))
-    (progn (when (zerop (% num 3)) (setf outstring (concat  outstring "Pling")))
-           (when (zerop (% num 5)) (setf outstring (concat  outstring "Plang")))
-           (when (zerop (% num 7)) (setf outstring (concat  outstring "Plong")))
-           (if (equal "" outstring) (number-to-string num) outstring))))
+  (-> ""
+       (pling num)
+       (plang num)
+       (plong num)
+       (drop num)))
 
 (provide 'raindrops)
 ;;; raindrops.el ends here
