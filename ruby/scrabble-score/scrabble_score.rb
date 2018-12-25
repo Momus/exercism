@@ -46,7 +46,7 @@ class Scrabble
       word.chars.reduce(0) { |acc, elem| acc + points(elem.downcase) }
     end
 
-    def lay_score(word)
+    def modified_score(word)
       word.chars.each_with_index do | c, i |
         case @title_layout[i][0]
         when :TLS
@@ -63,6 +63,8 @@ class Scrabble
       end
       
     end
+
+    def board_mods
 
     private
 
