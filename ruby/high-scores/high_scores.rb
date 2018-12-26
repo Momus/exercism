@@ -6,22 +6,22 @@ class HighScores
     @scores = scores
   end
 
-  def latest()
-    scores[-1]
+  def latest
+    scores.last
   end
 
-  def personal_best()
+  def personal_best
     scores.max
   end
 
-  def personal_top()
-    scores.sort.reverse[0..2]
+  def personal_top
+    scores.max(3)
   end
 
-  def report()
+  def report
     difference = personal_best - latest
     "Your latest score was #{latest}. \
-That's #{difference >  0 ? difference.to_s + " short of " : ""}\
+That's #{difference.to_s + ' short of ' if difference > 0}\
 your personal best!"
   end
 end
