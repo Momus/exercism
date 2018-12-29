@@ -1,25 +1,25 @@
 ## Convert a string representing a matrix into an multidelensional array.
 class Matrix
+  attr_reader :rows, :columns
+
   def initialize(matrix_string)
-    matricisze matrix_string
-  end
-
-  def rows
-    @matrix
-  end
-
-  def columns
-    @columns << @matrix.each_with_index { |row, index| }
+    make_rows matrix_string
+    make_columns
   end
 
   private
 
-  def matricisze(matrix_string)
-    @matrix = matrix_string.split("\n").map { |z| z.split("\ ").map(& :to_i) }
+  def make_rows(matrix_string)
+    @rows = matrix_string.split("\n").map { |z| z.split("\ ").map(& :to_i) }
+  end
+
+  def make_columns
+    index = 0
+    @columns = []
+    until index < @rows.length - 1
+      @columns[index] = []
+      @rows[index].each_with_index { |val, row| @columns[index][row] = val }
+      index += 1
+    end
   end
 end
-
-
-[0,0] [0,1] [0,2]
-[1,0] [1,1] [1,2]
-[2,0] [2,1] [2,2]
