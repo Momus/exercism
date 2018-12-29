@@ -16,7 +16,7 @@ class Matrix
   def make_columns
     index = 0
     @columns = []
-    until index < @rows.length - 1
+    while index < @rows.length
       @columns[index] = []
       @rows[index].each_with_index { |val, row| @columns[index][row] = val }
       index += 1
