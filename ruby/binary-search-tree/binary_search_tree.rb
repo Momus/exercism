@@ -1,6 +1,6 @@
 ## Binary Search Tree Class
 class Bst
-  attr_reader :left, :right, :data
+  attr_reader :data, :right, :left
 
   def initialize(data)
     @data = data
@@ -24,8 +24,4 @@ class Bst
   def each(&block)
     to_a.each(&block)
   end
-end
-
-module BookKeeping
-  VERSION = 1
 end
