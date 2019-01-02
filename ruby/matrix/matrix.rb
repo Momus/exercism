@@ -1,20 +1,30 @@
+## Exerecise to impliment my own transpose method for Ruby arrays.
+module MyTranspose
+  refine Array do
+    def my_transpose
+      transpose
+    end
+  end
+end
+
 ## Convert a string representing a matrix into a static
 ## multidelensional array.
 class Matrix
+  using MyTranspose
   attr_reader :rows, :columns
 
   def initialize(matrix_string)
-    make_rows matrix_string
-    make_columns
+    @rows = make_rows matrix_string
+    @columns = make_columns
   end
 
   private
 
   def make_rows(matrix_string)
-    @rows = matrix_string.split("\n").map { |row| row.split("\ ").map(& :to_i) }
+    matrix_string.lines.map { |row| row.split.map(&:to_i) }
   end
 
   def make_columns
-    @columns = rows.transpose
+    rows.my_transpose
   end
 end
