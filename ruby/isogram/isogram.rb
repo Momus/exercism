@@ -2,6 +2,6 @@
 class Isogram
   def self.isogram?(word)
     letters = word.upcase.scan(/\w/)
-    letters.uniq == letters
+    letters.uniq.length == letters.length
   end
 end
