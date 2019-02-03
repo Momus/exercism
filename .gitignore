@@ -12,3 +12,4 @@ pom.properties
 *pom.prop*
 *.lein*
 *META-INF*
+*node_modules*
