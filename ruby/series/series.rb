@@ -8,9 +8,13 @@ class Series
 
   def slices(slice_size)
     raise ArgumentError if slice_size > series.length
+
     slices = []
-    (series.length - slice_size + ARRAY_OFFSET).times do |index|
-      slices.push(series.slice(index, slice_size).join)
+    (series.length - slice_size + ARRAY_OFFSET)
+      .times do |index|
+      slices.push(series
+                    .slice(index, slice_size)
+                    .join)
     end
     slices
   end
