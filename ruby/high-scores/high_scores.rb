@@ -19,15 +19,16 @@ class HighScores
   end
 
   def report
-    "Your latest score was #{latest}. \
-That's #{high_vs_current + ' short of ' unless high_vs_current.empty?}\
-your personal best!"
+    "Your latest score was #{latest}. That's #{report_diff}your personal best!"
   end
 
   private
 
-  def high_vs_current
-    diff = personal_best - latest
-    diff > 0 ? diff.to_s : ''
+  def diff
+    personal_best - latest
+  end
+
+  def report_diff
+    "#{diff} short of " if diff > 0
   end
 end
