@@ -13,3 +13,4 @@ pom.properties
 *.lein*
 *META-INF*
 *node_modules*
+**/__py*
