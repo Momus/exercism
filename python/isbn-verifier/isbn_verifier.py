@@ -23,4 +23,4 @@ def is_valid(isbn):
         except ValueError:
             return False
 
-    return total % 11 == 0 and multiple == 1
+    return total % 11 == 0 if multiple == 1 else False
