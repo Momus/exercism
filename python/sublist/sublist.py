@@ -22,7 +22,7 @@ UNEQUAL = 0
 def is_sublist(longer: list[Any], shorter: list[Any]) -> bool:
     '''see if a shorter list is a sublist of longer list'''
 
-    for idx in range(len(longer)):
+    for idx in range(len(longer)  - len(shorter) + 1):
         if longer[idx:idx+len(shorter)] == shorter:
             return True
     return False
