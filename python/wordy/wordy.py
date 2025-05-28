@@ -2,6 +2,8 @@
 Parse and evaluate simple math word problems returning the answer as an integer. '''
 
 import operator as op
+from  collections import deque #to use popleft instead of pop(0)
+from typing import Deque
 
 OPS = {"plus": op.add,
        "minus": op.sub,
@@ -9,8 +11,8 @@ OPS = {"plus": op.add,
        "divided": op.truediv
     }
 
-def wordy_format(question: str) -> (list[int], list[str]):
-    '''Checks if the question is formatted propertly and gets it
+def wordy_format(question: str) -> (Deque[int], Deque[str]):
+    '''Checks if the question is formatted properly and gets it
     ready for calculation.
 
     Parameter:
@@ -19,21 +21,19 @@ def wordy_format(question: str) -> (list[int], list[str]):
                terminated by a question mark.
 
     Returns:
-    A tuple containing two lists. The first being the integers
+    A tuple containing two deque objects. The first being the integers
     to be operated on, the second, a list of operators from the
     OPS dictionary.
     '''
 
     question = question[:-1].split()[2:]
 
-    numbers = []
-    operations = []
+    numbers = deque()
+    operations = deque()
     last_word = "op"  #Prime the loop
     for word in question:
         if word == "by":
             continue
-    #    print("word: ", word)
-    #    print("last: ", last_word)
         if last_word == "op":
             try:
                 numbers.append(int(word))
@@ -42,8 +42,6 @@ def wordy_format(question: str) -> (list[int], list[str]):
             last_word = "num"
 
         else:
-     #       print("num_word: ", word)
-     #       print("last: ", last_word)
             if word.lstrip('-').isdigit():
                 raise ValueError("syntax error")
             if word in OPS:
@@ -52,7 +50,7 @@ def wordy_format(question: str) -> (list[int], list[str]):
             else:
                 raise ValueError("unknown operation")
 
-    if (not numbers) or (len(numbers) == len(operations)):
+    if (not numbers) or (len(numbers) != len(operations) + 1):
         raise ValueError("syntax error")
 
     return (numbers, operations)
@@ -71,4 +69,8 @@ def answer(question: str) -> int:
 
     '''
     nums, ops = wordy_format(question)
-    return (nums, ops)
+    ansr = nums.popleft()
+
+    while nums:
+        ansr = OPS[ops.popleft()](ansr, nums.popleft())
+    return ansr
